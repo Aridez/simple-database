@@ -8,31 +8,31 @@ public class ButtonScript : MonoBehaviour {
 	public Text text;
 	public Text text2;
 
-	public void deleteSavefile() {
-		SaveFileManager.instance.deleteSavefile(text.text);
+	public void DeleteSavefile() {
+		SaveFileManager.instance.DeleteSavefile(text.text);
 	}
 
-	public void create() {
-		SaveFileManager.instance.create(text.text);
+	public void Create() {
+		SaveFileManager.instance.Create(text.text);
 	}
 
-	public void refresh() {
-		SaveFileManager.instance.refreshSaveFileList();
+	public void Refresh() {
+		SaveFileManager.instance.RefreshSaveFileList();
 	}
 
-	public void open() {
-		SaveFileManager.instance.open(text.text);
+	public void Open() {
+		SaveFileManager.instance.Open(text.text);
 	}
 
-	public void add() {
-		SaveFileManager.instance.add(text.text, text2.text);
+	public void Add() {
+		SaveFileManager.instance.Add(text.text, text2.text);
 	}
 
-	public void close() {
-		SaveFileManager.instance.close();
+	public void Close() {
+		SaveFileManager.instance.Close();
 	}
 
-	public void deleteKey() {
-		SaveFileManager.instance.deleteKey(text.text);
+	public void DeleteKey() {
+		SaveFileManager.instance.DeleteKey(text.text);
 	}
 }

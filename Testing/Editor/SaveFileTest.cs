@@ -23,8 +23,8 @@ public class SaveFileTest {
     [TearDown] public void Dispose()
     { 
 		//deletes the testing save files
-		if (saveFile.isOpen()) saveFile.close(); 
-		SaveFile.DeleteSaveFile("testing", saveFile.getPath());
+		if (saveFile.IsOpen()) saveFile.Close(); 
+		SaveFile.DeleteSaveFile("testing", saveFile.GetPath());
 		//clear the console
 		/*/*/	
 		var assembly = Assembly.GetAssembly(typeof(UnityEditor.ActiveEditorTracker));
@@ -42,24 +42,24 @@ public class SaveFileTest {
 		Regex r = new Regex("(Error while opening the save file)");
 
 		//act
-		saveFile2 = new SaveFile("testing", saveFile.getPath());
+		saveFile2 = new SaveFile("testing", saveFile.GetPath());
 		
 		//assert
 		LogAssert.Expect(LogType.Error, r);
-		Assert.IsTrue(!saveFile2.isOpen());
+		Assert.IsTrue(!saveFile2.IsOpen());
 	}
 
 	[Test]
-	public void close() {
+	public void Close() {
 		//arrange
 		Regex r = new Regex("(You are tring to close a save file that is not open)");
 
 		//close correctly a savefile
-		saveFile.close();
-		Assert.IsTrue(!saveFile.isOpen());
+		saveFile.Close();
+		Assert.IsTrue(!saveFile.IsOpen());
 
 		//throw error when trying to close a closed savefile
-		saveFile.close();
+		saveFile.Close();
 		LogAssert.Expect(LogType.Error, r);
 	}
 
@@ -69,16 +69,16 @@ public class SaveFileTest {
 		Regex r = new Regex("(You are tring to use \"set\" on a save file that is not open)");
 
 		//checks that a key is set correctly
-		saveFile.set("key", "value");
-		Assert.IsTrue(saveFile.hasKey("key"));
+		saveFile.Set("key", "value");
+		Assert.IsTrue(saveFile.HasKey("key"));
 
 		//checks that keys are overriden
-		saveFile.set("key", "value override");
-		Assert.IsTrue(saveFile.get<string>("key").Equals("value override"));
+		saveFile.Set("key", "value override");
+		Assert.IsTrue(saveFile.Get<string>("key").Equals("value override"));
 
 		//throws error when trying to set on a closed save file
-		saveFile.close();
-		saveFile.set("key", "value");
+		saveFile.Close();
+		saveFile.Set("key", "value");
 		LogAssert.Expect(LogType.Error, r);
 	}
 
@@ -88,16 +88,16 @@ public class SaveFileTest {
 		Regex r = new Regex("(You are tring to use \"get\" on a save file that is not open)");
 
 		//gets an unexisting key without default value
-		string result = saveFile.get<string>("key");
+		string result = saveFile.Get<string>("key");
 		Assert.IsTrue(result == null);
 
 		//gets an unexisting key with default value
-		result = saveFile.get<string>("key", "default");
+		result = saveFile.Get<string>("key", "default");
 		Assert.IsTrue(result.Equals("default"));
 
 		//throws error when trying to get on a closed save file
-		saveFile.close();
-		saveFile.get<string>("key");
+		saveFile.Close();
+		saveFile.Get<string>("key");
 		LogAssert.Expect(LogType.Error, r);
 	}
 
@@ -107,34 +107,34 @@ public class SaveFileTest {
 		Regex r = new Regex("(You are tring to use \"delete\" on a save file that is not open)");
 
 		//checks that a key is deleted correctly
-		saveFile.set("key", "value");
-		Assert.IsTrue(saveFile.hasKey("key"));
-		saveFile.delete("key");
-		Assert.IsTrue(!saveFile.hasKey("key"));
+		saveFile.Set("key", "value");
+		Assert.IsTrue(saveFile.HasKey("key"));
+		saveFile.Delete("key");
+		Assert.IsTrue(!saveFile.HasKey("key"));
 
 		//deletes an unexisting key (shouldn't do anything)
-		saveFile.delete("key");
+		saveFile.Delete("key");
 		
 		//throws error when trying to delete on a closed save file
-		saveFile.close();
-		saveFile.delete("key");
+		saveFile.Close();
+		saveFile.Delete("key");
 		LogAssert.Expect(LogType.Error, r);
 	}
 
 	[Test]
-	public void reOpen() {
+	public void ReOpen() {
 		//arrange
 		Regex r = new Regex("(You are tring to open an already opened save file)");
-		saveFile.set("key", "persistent value");
+		saveFile.Set("key", "persistent value");
 
 		//tries to reopen an opened save file
-		saveFile.reOpen();
+		saveFile.ReOpen();
 		LogAssert.Expect(LogType.Error, r);
 
 		//checks that data persists between closing and opening a save file
-		saveFile.close();
-		saveFile.reOpen();
-		Assert.IsTrue(saveFile.get<string>("key").Equals("persistent value"));		
+		saveFile.Close();
+		saveFile.ReOpen();
+		Assert.IsTrue(saveFile.Get<string>("key").Equals("persistent value"));		
 	}
 
 	[Test]
@@ -143,16 +143,16 @@ public class SaveFileTest {
 		Regex r = new Regex("(Error while deleting the save file)");
 
 		//tries to delete an already opened saveFile
-		SaveFile.DeleteSaveFile("testing", saveFile.getPath());
+		SaveFile.DeleteSaveFile("testing", saveFile.GetPath());
 		LogAssert.Expect(LogType.Error, r);
 
 		//tries to delete an unexisting SaveFile (should do nothing)
-		SaveFile.DeleteSaveFile("unexisting", saveFile.getPath());
+		SaveFile.DeleteSaveFile("unexisting", saveFile.GetPath());
 		
 		//deletes a save file
-		saveFile.close();
-		SaveFile.DeleteSaveFile("testing", saveFile.getPath());
-		string[] list = SaveFile.GetSaveFileList(saveFile.getPath());
+		saveFile.Close();
+		SaveFile.DeleteSaveFile("testing", saveFile.GetPath());
+		string[] list = SaveFile.GetSaveFileList(saveFile.GetPath());
 		Assert.IsTrue(list.Length == 0);		
 	}
 }

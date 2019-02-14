@@ -23,21 +23,21 @@ namespace Skytanet.SimpleDatabase {
         /// <summary>
         /// Checks if the save file is open.
         /// </summary>
-        public bool isOpen() {
+        public bool IsOpen() {
             return open;
         }
 
         /// <summary>
         /// Gets the name of the current save file. Returns null if the save file wasn't initialized.
         /// </summary>
-        public string getName() {
+        public string GetName() {
             return filename;
         }
 
         /// <summary>
         /// Gets the path where the current save file is being saved. Returns null if the save file wasn't initialized.
         /// </summary>
-        public string getPath() {
+        public string GetPath() {
             return path;
         }
 
@@ -53,18 +53,18 @@ namespace Skytanet.SimpleDatabase {
         /// <param name="filename">Name of the save file without file extension.</param>
         /// <param name="path">Path to the folder that will contain the save files</param>
         public SaveFile(String filename, String path) {
-            this.openSaveFile(filename, path);
+            this.OpenSaveFile(filename, path);
         }
 
         /// <summary>
         /// Opens again a closed saveFile
         /// </summary>
-        public void reOpen() {
-            this.openSaveFile(this.getName(), this.getPath());
+        public void ReOpen() {
+            this.OpenSaveFile(this.GetName(), this.GetPath());
         }
 
-        private void openSaveFile(String filename, String path) {
-            if (this.isOpen()) {
+        private void OpenSaveFile(String filename, String path) {
+            if (this.IsOpen()) {
                 Debug.LogError("You are tring to open an already opened save file (" + "\""+filename+ "\")");
                 return;
             }
@@ -91,8 +91,8 @@ namespace Skytanet.SimpleDatabase {
         /// </summary>
         /// <param name="key">Key that identifies the value</param>
         /// <param name="value">Object to be stored</param>
-        public void set(string key, object value) {
-            if (!this.isOpen()) {
+        public void Set(string key, object value) {
+            if (!this.IsOpen()) {
                 Debug.LogError("You are tring to use \"set\" on a save file that is not open. (" + "\""+filename+ "\")");
                 return;
             }
@@ -108,8 +108,8 @@ namespace Skytanet.SimpleDatabase {
         /// <param name="key">Key that identified the object</param>
         /// <param name="defaultValue">(optional) Value to use if the key was not found</param>
         /// <returns>T</returns>
-        public T get<T>(string key, T defaultValue = default(T)) {
-            if (!this.isOpen()) {
+        public T Get<T>(string key, T defaultValue = default(T)) {
+            if (!this.IsOpen()) {
                 Debug.LogError("You are tring to use \"get\" on a save file that is not open. (" + "\""+filename+ "\")");
                 return default(T);
             }
@@ -125,8 +125,8 @@ namespace Skytanet.SimpleDatabase {
         /// Deletes a key and its value from the database and commits the changes. Does nothing if the key doesn't exist.
         /// </summary>
         /// <param name="key">Key to delete</param>
-        public void delete(string key) {
-            if (!this.isOpen()) {
+        public void Delete(string key) {
+            if (!this.IsOpen()) {
                 Debug.LogError("You are tring to use \"delete\" on a save file that is not open. (" + "\""+filename+ "\")");
                 return;
             }
@@ -143,8 +143,8 @@ namespace Skytanet.SimpleDatabase {
         /// </summary>
         /// <param name="key">Key to check</param>
         /// <returns>True if it exists, false otherwise.</returns>
-        public bool hasKey(string key) {
-            if (!this.isOpen()) {
+        public bool HasKey(string key) {
+            if (!this.IsOpen()) {
                 Debug.LogError("You are tring to use \"hasKey\" on a save file that is not open. (" + "\""+filename+ "\")");
                 return false;
             }
@@ -155,8 +155,8 @@ namespace Skytanet.SimpleDatabase {
         /// Gets a list of all the keys in the database. This operation may be slow.
         /// </summary>
         /// <returns>A list of keys in the database.</returns>
-        public List<string> getKeys() {
-            if (!this.isOpen()) {
+        public List<string> GetKeys() {
+            if (!this.IsOpen()) {
                 Debug.LogError("You are tring to use \"getKeys\" on a save file that is not open. (" + "\""+filename+ "\")");
                 return null;
             }
@@ -172,8 +172,8 @@ namespace Skytanet.SimpleDatabase {
         /// <summary>
         /// Shuts down the database, closing the file streams.
         /// </summary>
-        public void close() {
-            if (!this.isOpen()) {
+        public void Close() {
+            if (!this.IsOpen()) {
                 Debug.LogError("You are tring to close a save file that is not open. (" + "\""+filename+ "\")");
                 return;
             }

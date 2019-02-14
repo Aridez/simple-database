@@ -25,13 +25,13 @@ public class SaveFileManager : MonoBehaviour {
 	}
 
 	public void Start() {
-		refreshSaveFileList();
+		RefreshSaveFileList();
 	}
 
 	/// <summary>
 	/// refreshes the list of savefiles in the scene UI
 	/// </summary>
-	public void refreshSaveFileList() {
+	public void RefreshSaveFileList() {
 		int childCount = savefileListPanel.transform.childCount;
         for (int i=0; i<childCount; i++) {
             GameObject.Destroy(savefileListPanel.transform.GetChild(i).gameObject);
@@ -49,47 +49,47 @@ public class SaveFileManager : MonoBehaviour {
 	/// Deletes a save file and refreshes the scene UI
 	/// </summary>
 	/// <param name="name">the name of the save file to delete</param>
-	public void deleteSavefile(string name) {
+	public void DeleteSavefile(string name) {
 		SaveFile.DeleteSaveFile(name);
-		refreshSaveFileList();
+		RefreshSaveFileList();
 	}
 
 	/// <summary>
 	/// Creates a new save file and refreshes the scene UI
 	/// </summary>
 	/// <param name="name">name of the save file to create</param>
-	public void create(string name) {
+	public void Create(string name) {
 		SaveFile sdb = new SaveFile(name);
-		sdb.close();
-		refreshSaveFileList();
+		sdb.Close();
+		RefreshSaveFileList();
 	}
 
 	/// <summary>
 	/// Opens a save file and shows its contents on the scene UI
 	/// </summary>
 	/// <param name="name">name of the save file to open</param>
-	public void open(string name) {
+	public void Open(string name) {
 		rightBlockImage.SetActive(false);
 		leftBlockImage.SetActive(true);
 		saveFile = new SaveFile(name);
 		contentListTitle.text = name;
-		refreshContentList();
+		RefreshContentList();
 	}
 
 	/// <summary>
 	/// Refreshes the contents of an openes save file on the UI
 	/// </summary>
-	public void refreshContentList() {
+	public void RefreshContentList() {
 		int childCount = contentListPanel.transform.childCount;
         for (int i=0; i<childCount; i++) {
             GameObject.Destroy(contentListPanel.transform.GetChild(i).gameObject);
         }
 
-		List<string> keys = saveFile.getKeys();
+		List<string> keys = saveFile.GetKeys();
 		for (int i = 0; i < keys.Count; ++i) {
 			GameObject go = GameObject.Instantiate(contentListPrefab);
 			go.transform.Find("Key").transform.Find("Text").GetComponent<Text>().text = keys[i];
-			go.transform.Find("Value").transform.Find("Text").GetComponent<Text>().text = saveFile.get<string>(keys[i]);
+			go.transform.Find("Value").transform.Find("Text").GetComponent<Text>().text = saveFile.Get<string>(keys[i]);
 			go.transform.SetParent(contentListPanel.transform, false);		
 		}
 	}
@@ -99,27 +99,27 @@ public class SaveFileManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="key">key of the new pair</param>
 	/// <param name="value">value of the new pair</param>
-	public void add(string key, string value) {
-		saveFile.set(key, value);
-		refreshContentList();
+	public void Add(string key, string value) {
+		saveFile.Set(key, value);
+		RefreshContentList();
 	}
 
 	/// <summary>
 	/// Closes the currently opened save file
 	/// </summary>
-	public void close() {
+	public void Close() {
 		rightBlockImage.SetActive(true);
 		leftBlockImage.SetActive(false);
-		saveFile.close();
+		saveFile.Close();
 	}
 
 	/// <summary>
 	/// Deletes a key-value pair and refreshes the content UI
 	/// </summary>
 	/// <param name="key">key of the pair to delete</param>
-	public void deleteKey(string key) {
-		saveFile.delete(key);
-		refreshContentList();
+	public void DeleteKey(string key) {
+		saveFile.Delete(key);
+		RefreshContentList();
 	}
 
 }
