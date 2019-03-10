@@ -39,18 +39,6 @@ public class JsonConvertersTest {
 		Assert.IsTrue(original.Equals(deserialized));
 	}
 
-	[Test]
-	public void Vector3IntTest() {
-		//arrange
-		Vector3Int original = new Vector3Int(1, 2, 3);
-
-		//act
-		saveFile.Set("vector3int", original);
-		Vector3Int deserialized = saveFile.Get<Vector3Int>("vector3int");
-
-		//assert
-		Assert.IsTrue(original.Equals(deserialized));
-	}
 
 		[Test]
 	public void Vector2Test() {
@@ -60,19 +48,6 @@ public class JsonConvertersTest {
 		//act
 		saveFile.Set("Vector2", original);
 		Vector2 deserialized = saveFile.Get<Vector2>("Vector2");
-
-		//assert
-		Assert.IsTrue(original.Equals(deserialized));
-	}
-
-	[Test]
-	public void Vector2IntTest() {
-		//arrange
-		Vector2Int original = new Vector2Int(1, 2);
-
-		//act
-		saveFile.Set("Vector2Int", original);
-		Vector2Int deserialized = saveFile.Get<Vector2Int>("Vector2Int");
 
 		//assert
 		Assert.IsTrue(original.Equals(deserialized));
@@ -151,19 +126,6 @@ public class JsonConvertersTest {
 		//act
 		saveFile.Set("Bounds", original);
 		Bounds deserialized = saveFile.Get<Bounds>("Bounds");
-
-		//assert
-		Assert.IsTrue(original.Equals(deserialized));
-	}
-
-	[Test]
-	public void Matrix4x4Test() {
-		//arrange
-		Matrix4x4 original = new Matrix4x4(Vector4.zero, Vector4.one, Vector4.zero, Vector4.one);
-
-		//act
-		saveFile.Set("Matrix4x4", original);
-		Matrix4x4 deserialized = saveFile.Get<Matrix4x4>("Matrix4x4");
 
 		//assert
 		Assert.IsTrue(original.Equals(deserialized));

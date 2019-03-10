@@ -27,10 +27,9 @@ public class SaveFileTest {
 		SaveFile.DeleteSaveFile("testing", saveFile.GetPath());
 		//clear the console
 		/*/*/	
-		var assembly = Assembly.GetAssembly(typeof(UnityEditor.ActiveEditorTracker));
-        var type = assembly.GetType("UnityEditor.LogEntries");
-        var method = type.GetMethod("Clear");
-        method.Invoke(new object(), null);
+ 		var logEntries = System.Type.GetType("UnityEditorInternal.LogEntries,UnityEditor.dll");
+    var clearMethod = logEntries.GetMethod("Clear", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public);
+    clearMethod.Invoke(null,null);
 		//*/
 	}
 
