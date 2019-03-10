@@ -27,7 +27,7 @@ public class JsonConvertersTest {
 
 
 	[Test]
-	public void Vector3_test() {
+	public void Vector3Test() {
 		//arrange
 		Vector3 original = new Vector3(1, 2, 3);
 
@@ -40,7 +40,7 @@ public class JsonConvertersTest {
 	}
 
 	[Test]
-	public void Vector3Int_test() {
+	public void Vector3IntTest() {
 		//arrange
 		Vector3Int original = new Vector3Int(1, 2, 3);
 
@@ -53,7 +53,7 @@ public class JsonConvertersTest {
 	}
 
 		[Test]
-	public void Vector2_test() {
+	public void Vector2Test() {
 		//arrange
 		Vector2 original = new Vector2(1, 2);
 
@@ -66,7 +66,7 @@ public class JsonConvertersTest {
 	}
 
 	[Test]
-	public void Vector2Int_test() {
+	public void Vector2IntTest() {
 		//arrange
 		Vector2Int original = new Vector2Int(1, 2);
 
@@ -79,7 +79,7 @@ public class JsonConvertersTest {
 	}
 
 		[Test]
-	public void Vector4_test() {
+	public void Vector4Test() {
 		//arrange
 		Vector4 original = new Vector4(1, 2, 3, 4);
 
@@ -92,7 +92,7 @@ public class JsonConvertersTest {
 	}
 
 	[Test]
-	public void List_references_test() {
+	public void ListReferencesTest() {
 		//arrange
 		SimpleTestObject first = new SimpleTestObject("first");
 		SimpleTestObject second = new SimpleTestObject("second");
@@ -112,7 +112,7 @@ public class JsonConvertersTest {
 	}
 
 	[Test]
-	public void Dictionary_references_test() {
+	public void DictionaryReferencesTest() {
 		//arrange
 		SimpleTestObject first = new SimpleTestObject("first");
 		SimpleTestObject second = new SimpleTestObject("second");
@@ -132,7 +132,7 @@ public class JsonConvertersTest {
 	}
 
 	[Test]
-	public void Color_test() {
+	public void ColorTest() {
 		//arrange
 		Color color = new Color(0.1f, 0.2f, 0.3f, 0.4f);
 		
@@ -144,7 +144,7 @@ public class JsonConvertersTest {
 	}
 
 	[Test]
-	public void Bounds_test() {
+	public void BoundsTest() {
 		//arrange
 		Bounds original = new Bounds(Vector3.zero, Vector3.one);
 
@@ -157,7 +157,7 @@ public class JsonConvertersTest {
 	}
 
 	[Test]
-	public void Matrix4x4_test() {
+	public void Matrix4x4Test() {
 		//arrange
 		Matrix4x4 original = new Matrix4x4(Vector4.zero, Vector4.one, Vector4.zero, Vector4.one);
 
@@ -170,7 +170,7 @@ public class JsonConvertersTest {
 	}
 
 	[Test]
-	public void Quaternion_test() {
+	public void QuaternionTest() {
 		//arrange
 		Quaternion original = new Quaternion(1f,2f,3f,4f);
 
@@ -183,7 +183,7 @@ public class JsonConvertersTest {
 	}
 
 	[Test]
-	public void Rect_test() {
+	public void RectTest() {
 		//arrange
 		Rect original = new Rect(1f,2f,3f,4f);
 
@@ -196,7 +196,7 @@ public class JsonConvertersTest {
 	}
 
 	[Test]
-	public void RectOffset_test() {
+	public void RectOffsetTest() {
 		//arrange
 		RectOffset original = new RectOffset(1,2,3,5);
 

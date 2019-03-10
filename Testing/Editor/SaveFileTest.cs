@@ -36,7 +36,7 @@ public class SaveFileTest {
 
 
 	[Test]
-	public void open_or_create() {
+	public void OpenOrCreate() {
 		//arrange
 		SaveFile saveFile2 = null;
 		Regex r = new Regex("(Error while opening the save file)");
@@ -64,7 +64,7 @@ public class SaveFileTest {
 	}
 
 	[Test]
-	public void set() {
+	public void Set() {
 		//arrange
 		Regex r = new Regex("(You are tring to use \"set\" on a save file that is not open)");
 
@@ -83,7 +83,7 @@ public class SaveFileTest {
 	}
 
 	[Test]
-	public void get() {
+	public void Get() {
 		//arrange
 		Regex r = new Regex("(You are tring to use \"get\" on a save file that is not open)");
 
@@ -102,7 +102,7 @@ public class SaveFileTest {
 	}
 
 	[Test]
-	public void delete() {
+	public void Delete() {
 		//arrange
 		Regex r = new Regex("(You are tring to use \"delete\" on a save file that is not open)");
 
